@@ -1,0 +1,25 @@
+# Native C/C++
+.cxx
+.externalNativeBuild
+
+# Gradle
+.gradle
+local.properties
+
+# Build
+*/build/
+build/
+
+# Mac
+.DS_Store
+
+# Android Studio
+.idea/*
+*.iml
+*.ipr
+*.iws
+!.idea/codeStyles/Project.xml
+!.idea/codeStyles/codeStyleConfig.xml
+
+# Misc
+/captures
