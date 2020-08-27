@@ -1,6 +1,5 @@
 package com.worker8.auto.adapter.library
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,11 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.reflect.KClass
 
-
 class AutoAdapter : ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(Comparator) {
+    // KClass -> ViewType
+    private val viewTypeCache = mutableMapOf<KClass<*>, Int>()
 
-    private val map = mutableMapOf<KClass<*>, Int>()
-    private val layoutMap = mutableMapOf<Int, Int>()
+    // viewType -> layout resource id
+    private val viewTypeToLayoutResIdMap = mutableMapOf<Int, Int>()
 
     init {
         setHasStableIds(true)
@@ -22,24 +22,17 @@ class AutoAdapter : ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LayoutInflater.from(parent.context)
-            .inflate(layoutMap[viewType] ?: -1, parent, false)
-            .let {
-                object : RecyclerView.ViewHolder(it) {}
-            }
+            .inflate(viewTypeToLayoutResIdMap[viewType] ?: -1, parent, false)
+            .let { object : RecyclerView.ViewHolder(it) {} }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        Log.d("ddw", "onBind[$position]: ${getItem(position)}:: $holder")
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         getItem(position).bind(holder.itemView)
-    }
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
-        if (map[item::class] == null) {
-            map[item::class] = map.size
+        return viewTypeCache.getOrPut(item::class) { viewTypeCache.size }.also {
+            viewTypeToLayoutResIdMap[it] = item.layoutResId
         }
-        val type = map[item::class] ?: -1
-        layoutMap[type] = item.layoutResId
-        return type
     }
 }
 

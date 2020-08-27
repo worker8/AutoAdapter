@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = AutoAdapter()
         recyclerView.adapter = adapter
         var counter = 5
-
         val list = listOf(
             HeaderRow("F A K E   N E W S"),
             NormalRow(
@@ -65,7 +64,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         addButton.setOnClickListener {
-            Log.d("ddw", "clicked...")
             counter++
             state.addRow(
                 NormalRow(
