@@ -1,24 +1,37 @@
 package com.worker8.autoadapter
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.BaseRow
 import com.worker8.auto.adapter.library.AutoData
-import kotlinx.android.synthetic.main.activity_main.*
+import com.worker8.autoadapter.data.ImageData
+import com.worker8.autoadapter.data.NormalAutoData
+import com.worker8.autoadapter.rows.*
+import kotlinx.android.synthetic.main.activity_basic_list.*
 
-class MainActivity : AppCompatActivity() {
+class BasicListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val adapter = AutoAdapter()
+        setContentView(R.layout.activity_basic_list)
+        val adapter = AutoAdapter(hasStableIds = false)
         recyclerView.adapter = adapter
         var counter = 5
+        val horizontalList = ColumnList(
+            1L, listOf(
+                ImageData(1L, "Cat #1", "https://i.imgur.com/KF9tsGy.png"),
+                ImageData(2L, "Cat #2", "https://i.imgur.com/S04Ocnv.png"),
+                ImageData(3L, "Cat #3", "https://i.imgur.com/p19dizd.png"),
+                ImageData(4L, "Cat #4", "https://i.imgur.com/ZgmBLGu.png"),
+                ImageData(5L, "Cat #5", "https://i.imgur.com/cbC9z3q.png"),
+                ImageData(6L, "Cat #6", "https://i.imgur.com/tsL4ZXm.png"),
+                ImageData(7L, "Cat #7", "https://i.imgur.com/6PBHCta.png"),
+                ImageData(8L, "Cat #8", "https://i.imgur.com/wTBgyLu.png")
+            )
+        )
         val list = listOf(
             HeaderRow("F A K E   N E W S"),
+            HorizontalListRow(horizontalList),
             NormalRow(
                 NormalAutoData(
                     1,
@@ -85,9 +98,6 @@ class MainActivity : AppCompatActivity() {
 
         fun shuffle() {
             val newList = list.shuffled()
-            newList.forEachIndexed { index, item ->
-                Log.d("ddw", "shuffled[$index] = $item: ${item.data}")
-            }
             callback?.invoke(newList)
         }
 

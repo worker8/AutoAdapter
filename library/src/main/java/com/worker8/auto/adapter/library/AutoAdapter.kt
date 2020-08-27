@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_ID
 import kotlin.reflect.KClass
 
-class AutoAdapter : ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(Comparator) {
+class AutoAdapter(private val hasStableIds: Boolean = false) :
+    ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(Comparator) {
     // KClass -> ViewType
     private val viewTypeCache = mutableMapOf<KClass<*>, Int>()
 
@@ -15,10 +17,16 @@ class AutoAdapter : ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(
     private val viewTypeToLayoutResIdMap = mutableMapOf<Int, Int>()
 
     init {
-        setHasStableIds(true)
+        setHasStableIds(hasStableIds)
     }
 
-    override fun getItemId(position: Int) = getItem(position).data.id
+    override fun getItemId(position: Int) =
+        if (hasStableIds) {
+            getItem(position).data.id
+        } else {
+            NO_ID
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LayoutInflater.from(parent.context)
