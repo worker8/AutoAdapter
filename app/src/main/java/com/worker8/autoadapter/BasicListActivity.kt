@@ -2,6 +2,7 @@ package com.worker8.autoadapter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView.NO_ID
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.BaseRow
 import com.worker8.auto.adapter.library.AutoData
@@ -18,7 +19,7 @@ class BasicListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         var counter = 5
         val horizontalList = ColumnList(
-            1L, listOf(
+            NO_ID, listOf(
                 ImageData(1L, "Cat #1", "https://i.imgur.com/KF9tsGy.png"),
                 ImageData(2L, "Cat #2", "https://i.imgur.com/S04Ocnv.png"),
                 ImageData(3L, "Cat #3", "https://i.imgur.com/p19dizd.png"),
