@@ -7,18 +7,15 @@ A small Android library for making RecyclerView easier to use with different vie
 build.gradle:
 
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    allprojects {
+	repositories {
+            maven { url 'https://jitpack.io' }
+        }
+    }
     
     // if using .kts
     allprojects {
         repositories {
-            google()
-            jcenter()
             maven("https://jitpack.io")
     }
 }
