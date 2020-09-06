@@ -1,6 +1,7 @@
 package com.worker8.autoadapter
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView.NO_ID
 import com.worker8.auto.adapter.library.AutoAdapter
@@ -17,6 +18,7 @@ class BasicListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_basic_list)
         val adapter = AutoAdapter(hasStableIds = false)
         recyclerView.adapter = adapter
+
         var counter = 5
         val horizontalList = ColumnList(
             NO_ID, listOf(
@@ -31,7 +33,8 @@ class BasicListActivity : AppCompatActivity() {
             )
         )
         val list = listOf(
-            HeaderRow("F A K E   N E W S"),
+//            HeaderRow("F A K E   N E W S"),
+            ImageRow(),
             HorizontalListRow(horizontalList),
             NormalRow(
                 NormalAutoData(
@@ -65,7 +68,15 @@ class BasicListActivity : AppCompatActivity() {
         )
         val state = State(list)
         adapter.submitList(list)
+        recyclerView.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+            val view = recyclerView.getChildAt(0);
+            Log.d("ddw", "view: $view");
+            if (view != null && recyclerView.getChildAdapterPosition(view) == 0) {
+                view.translationY = (-view.top / 2).toFloat();// or use view.animate().translateY();
+            }
+        }
         state.setObserver {
+            Log.d("ddw", "here 1");
             adapter.submitList(it)
         }
 
@@ -118,5 +129,4 @@ class BasicListActivity : AppCompatActivity() {
             callback?.invoke(list)
         }
     }
-
 }

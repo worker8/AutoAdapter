@@ -12,6 +12,7 @@
         android:theme="@style/Theme.AutoAdapter">
 
         <activity android:name=".BasicListActivity" />
+        <activity android:name=".SimpleActivity" />
         <activity android:name=".TopActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

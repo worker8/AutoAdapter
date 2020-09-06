@@ -16,12 +16,14 @@ class TopActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val list = listOf(
-            SimpleRow(StringData(1L, "BasicListActivity")) {
+            SimpleRow(StringData(text = "SimpleActivity")) {
+                startActivity(Intent(this@TopActivity, SimpleActivity::class.java))
+            },
+            SimpleRow(StringData(text = "BasicListActivity")) {
                 startActivity(Intent(this@TopActivity, BasicListActivity::class.java))
             },
-            SimpleRow(StringData(1L, "Dummy Example #1")) {},
-            SimpleRow(StringData(1L, "Dummy Example #2")) {},
-            SimpleRow(StringData(1L, "Dummy Example #3")) {},
+            SimpleRow(StringData(text = "ShuffleRearrangeActivity - HasStableId")) {},
+            SimpleRow(StringData(text = "")) {},
         )
         adapter.submitList(list)
     }
