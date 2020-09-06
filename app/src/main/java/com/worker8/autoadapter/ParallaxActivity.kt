@@ -27,7 +27,7 @@ class ParallaxActivity : AppCompatActivity() {
         recyclerView.setOnScrollChangeListener { _view, i, i2, i3, i4 ->
             val view = recyclerView.getChildAt(0);
             if (view != null && recyclerView.getChildAdapterPosition(view) == 0) {
-                view.translationY = (-view.top / 2).toFloat();// or use view.animate().translateY();
+                view.translationY = (-view.top / 2).toFloat()
             }
         }
         val list = listOf(

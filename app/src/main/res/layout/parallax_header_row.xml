@@ -11,6 +11,7 @@
         android:id="@+id/parallaxTagText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="4dp"
         android:textColor="#e67e22"
         android:textSize="14sp"
