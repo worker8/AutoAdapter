@@ -18,23 +18,21 @@ class TopActivity : AppCompatActivity() {
 
         val list = listOf(
             SimpleRow(StringData(text = "SimpleActivity - no stable id")) {
-                startActivity(
-                    Intent(this@TopActivity, SimpleActivity::class.java).putExtra(
-                        HAS_STABLE_ID, false
-                    )
-                )
+                Intent(this, SimpleActivity::class.java)
+                    .putExtra(HAS_STABLE_ID, false)
+                    .also { startActivity(it) }
             },
             SimpleRow(StringData(text = "SimpleActivity - has stable id")) {
-                startActivity(
-                    Intent(this@TopActivity, SimpleActivity::class.java).putExtra(
-                        HAS_STABLE_ID, true
-                    )
-                )
+                Intent(this, SimpleActivity::class.java)
+                    .putExtra(HAS_STABLE_ID, true)
+                    .also { startActivity(it) }
             },
             SimpleRow(StringData(text = "MultipleViewTypeActivity")) {
                 startActivity(Intent(this@TopActivity, MultipleViewTypeActivity::class.java))
             },
-            SimpleRow(StringData(text = "ShuffleRearrangeActivity - HasStableId")) {},
+            SimpleRow(StringData(text = "ParallaxActivity")) {
+                startActivity(Intent(this@TopActivity, ParallaxActivity::class.java))
+            },
             SimpleRow(StringData(text = "")) {},
         )
         adapter.submitList(list)

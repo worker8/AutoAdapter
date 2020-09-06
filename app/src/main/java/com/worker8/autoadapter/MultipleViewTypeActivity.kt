@@ -33,8 +33,7 @@ class MultipleViewTypeActivity : AppCompatActivity() {
             )
         )
         val list = listOf(
-//            HeaderRow("F A K E   N E W S"),
-            ImageRow(),
+            HeaderRow("F A K E   N E W S"),
             HorizontalListRow(horizontalList),
             NormalRow(
                 NormalAutoData(
@@ -68,13 +67,7 @@ class MultipleViewTypeActivity : AppCompatActivity() {
         )
         val state = State(list)
         adapter.submitList(list)
-        recyclerView.setOnScrollChangeListener { view, i, i2, i3, i4 ->
-            val view = recyclerView.getChildAt(0);
-            Log.d("ddw", "view: $view");
-            if (view != null && recyclerView.getChildAdapterPosition(view) == 0) {
-                view.translationY = (-view.top / 2).toFloat();// or use view.animate().translateY();
-            }
-        }
+
         state.setObserver {
             Log.d("ddw", "here 1");
             adapter.submitList(it)

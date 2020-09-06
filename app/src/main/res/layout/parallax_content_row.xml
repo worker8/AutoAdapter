@@ -4,22 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="16dp">
+    android:background="@android:color/white"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/simpleText"
-        android:layout_width="0dp"
+        android:id="@+id/parallaxContentText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:fontFamily="sans-serif-black"
-        android:padding="16dp"
-        android:text="Header Row"
-        android:textColor="#30336b"
-        android:textSize="22sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#2c3e50"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
