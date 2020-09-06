@@ -31,8 +31,8 @@ class TopActivity : AppCompatActivity() {
                     )
                 )
             },
-            SimpleRow(StringData(text = "BasicListActivity")) {
-                startActivity(Intent(this@TopActivity, BasicListActivity::class.java))
+            SimpleRow(StringData(text = "MultipleViewTypeActivity")) {
+                startActivity(Intent(this@TopActivity, MultipleViewTypeActivity::class.java))
             },
             SimpleRow(StringData(text = "ShuffleRearrangeActivity - HasStableId")) {},
             SimpleRow(StringData(text = "")) {},

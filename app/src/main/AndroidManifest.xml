@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoAdapter">
 
-        <activity android:name=".BasicListActivity" />
+        <activity android:name=".MultipleViewTypeActivity" />
         <activity android:name=".SimpleActivity" />
         <activity android:name=".TopActivity">
             <intent-filter>

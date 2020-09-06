@@ -12,7 +12,7 @@ import com.worker8.autoadapter.data.NormalAutoData
 import com.worker8.autoadapter.rows.*
 import kotlinx.android.synthetic.main.activity_basic_list.*
 
-class BasicListActivity : AppCompatActivity() {
+class MultipleViewTypeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic_list)
