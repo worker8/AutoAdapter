@@ -3,7 +3,6 @@ package com.worker8.autoadapter
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_ID
 import com.worker8.auto.adapter.library.AutoAdapter

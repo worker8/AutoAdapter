@@ -26,7 +26,7 @@ class SimpleActivity : AppCompatActivity() {
         val adapter = AutoAdapter(hasStableIds = hasStableId)
         recyclerView.adapter = adapter
         val ROW_COUNT = 100
-        val list = mutableListOf<ListItem<out AutoData>>()
+        val list = mutableListOf<ListItem<AutoData>>()
         for (i in 0 until ROW_COUNT) {
             if (hasStableId) {
                 list.add(NormalRow(NormalAutoData(i.toLong(), "title #${i}", "desc #${i}")))

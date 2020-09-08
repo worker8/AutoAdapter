@@ -7,7 +7,7 @@ import com.worker8.autoadapter.R
 import com.worker8.autoadapter.data.ImageData
 import kotlinx.android.synthetic.main.horizontal_item.view.*
 
-class Column(override val data: ImageData) :
+class CatImageColumn(override val data: ImageData) :
     ListItem<ImageData>() {
     override val layoutResId = R.layout.horizontal_item
     override fun bind(itemView: View) {

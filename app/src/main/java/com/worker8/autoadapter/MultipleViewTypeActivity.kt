@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.AutoData
 import com.worker8.auto.adapter.library.ListItem
+import com.worker8.autoadapter.data.ColumnListData
 import com.worker8.autoadapter.data.ImageData
 import com.worker8.autoadapter.data.NormalAutoData
 import com.worker8.autoadapter.rows.*
@@ -20,7 +21,7 @@ class MultipleViewTypeActivity : AppCompatActivity() {
 
         var counter = 5
         val autoIncrementingId = AutoIncrementingId()
-        val horizontalList = ColumnList(
+        val horizontalList = ColumnListData(
             autoIncrementingId.next(), listOf(
                 ImageData(1L, "Cat #1", "https://i.imgur.com/KF9tsGy.png"),
                 ImageData(2L, "Cat #2", "https://i.imgur.com/S04Ocnv.png"),
