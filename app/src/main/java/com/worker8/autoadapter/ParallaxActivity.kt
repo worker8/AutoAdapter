@@ -85,7 +85,8 @@ class ParallaxActivity : AppCompatActivity() {
 }
 
 private class ParallaxHeaderRow(override val data: HeaderAutoData) :
-    BaseRow<ParallaxHeaderRow.HeaderAutoData>(data, R.layout.parallax_header_row) {
+    BaseRow<ParallaxHeaderRow.HeaderAutoData>() {
+    override val layoutResId = R.layout.parallax_header_row
     override fun bind(itemView: View) {
         itemView.apply {
             parallaxTagText.text = data.tag
@@ -102,7 +103,8 @@ private class ParallaxHeaderRow(override val data: HeaderAutoData) :
 }
 
 private class ParallaxContentRow(override val data: StringData) :
-    BaseRow<StringData>(data, R.layout.parallax_content_row) {
+    BaseRow<StringData>() {
+    override val layoutResId = R.layout.parallax_content_row
     override fun bind(itemView: View) {
         itemView.apply {
             parallaxContentText.text = data.text

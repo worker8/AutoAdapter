@@ -8,7 +8,8 @@ import com.worker8.autoadapter.data.ImageData
 import kotlinx.android.synthetic.main.horizontal_item.view.*
 
 class Column(override val data: ImageData) :
-    BaseRow<ImageData>(data, R.layout.horizontal_item) {
+    BaseRow<ImageData>() {
+    override val layoutResId = R.layout.horizontal_item
     override fun bind(itemView: View) {
         itemView.apply {
             itemText.text = data.text

@@ -7,8 +7,10 @@ import com.worker8.auto.adapter.library.NoAutoData
 import com.worker8.autoadapter.R
 import kotlinx.android.synthetic.main.image_row.view.*
 
-class ImageRow() :
-    BaseRow<NoAutoData>(NoAutoData(), R.layout.image_row) {
+class ImageRow:
+    BaseRow<NoAutoData>() {
+    override val data = NoAutoData()
+    override val layoutResId = R.layout.image_row
     override fun bind(itemView: View) {
         Glide.with(itemView.context)
             .load("https://i.imgur.com/55cN4iAh.png")
