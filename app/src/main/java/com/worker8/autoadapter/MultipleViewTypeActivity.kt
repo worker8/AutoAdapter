@@ -69,7 +69,6 @@ class MultipleViewTypeActivity : AppCompatActivity() {
         adapter.submitList(list)
 
         state.setObserver {
-            Log.d("ddw", "here 1");
             adapter.submitList(it)
         }
 
