@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.NO_ID
 import kotlin.reflect.KClass
 
 class AutoAdapter(private val hasStableIds: Boolean = false) :
-    ListAdapter<BaseRow<out AutoData>, RecyclerView.ViewHolder>(Comparator) {
+    ListAdapter<ListItem<out AutoData>, RecyclerView.ViewHolder>(Comparator) {
     // KClass -> ViewType
     private val viewTypeCache = mutableMapOf<KClass<*>, Int>()
 
@@ -44,14 +44,14 @@ class AutoAdapter(private val hasStableIds: Boolean = false) :
     }
 }
 
-private object Comparator : DiffUtil.ItemCallback<BaseRow<out AutoData>>() {
+private object Comparator : DiffUtil.ItemCallback<ListItem<out AutoData>>() {
     override fun areItemsTheSame(
-        oldItem: BaseRow<out AutoData>,
-        newItem: BaseRow<out AutoData>
+        oldItem: ListItem<out AutoData>,
+        newItem: ListItem<out AutoData>
     ) = oldItem.data.id == newItem.data.id
 
     override fun areContentsTheSame(
-        oldItem: BaseRow<out AutoData>,
-        newItem: BaseRow<out AutoData>
+        oldItem: ListItem<out AutoData>,
+        newItem: ListItem<out AutoData>
     ) = oldItem.data.isContentSame(newItem.data)
 }

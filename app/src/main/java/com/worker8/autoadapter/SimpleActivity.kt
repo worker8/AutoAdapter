@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView.NO_ID
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.AutoData
-import com.worker8.auto.adapter.library.BaseRow
+import com.worker8.auto.adapter.library.ListItem
 import com.worker8.autoadapter.data.NormalAutoData
 import kotlinx.android.synthetic.main.activity_simple.*
 import kotlinx.android.synthetic.main.normal_row.view.*
@@ -26,7 +26,7 @@ class SimpleActivity : AppCompatActivity() {
         val adapter = AutoAdapter(hasStableIds = hasStableId)
         recyclerView.adapter = adapter
         val ROW_COUNT = 100
-        val list = mutableListOf<BaseRow<out AutoData>>()
+        val list = mutableListOf<ListItem<out AutoData>>()
         for (i in 0 until ROW_COUNT) {
             if (hasStableId) {
                 list.add(NormalRow(NormalAutoData(i.toLong(), "title #${i}", "desc #${i}")))
@@ -39,7 +39,7 @@ class SimpleActivity : AppCompatActivity() {
 }
 
 private class NormalRow(override val data: NormalAutoData) :
-    BaseRow<NormalAutoData>() {
+    ListItem<NormalAutoData>() {
     override val layoutResId = R.layout.normal_row
     override fun bind(itemView: View) {
         itemView.titleText.text = data.name

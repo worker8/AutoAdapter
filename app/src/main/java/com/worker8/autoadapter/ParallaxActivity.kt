@@ -1,18 +1,18 @@
 package com.worker8.autoadapter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_ID
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.AutoData
-import com.worker8.auto.adapter.library.BaseRow
+import com.worker8.auto.adapter.library.ListItem
 import com.worker8.autoadapter.data.StringData
 import com.worker8.autoadapter.rows.FooterRow
 import com.worker8.autoadapter.rows.ImageRow
-import kotlinx.android.synthetic.main.activity_basic_list.*
-import kotlinx.android.synthetic.main.activity_simple.*
+import com.worker8.autoadapter.util.AutoIncrementingId
 import kotlinx.android.synthetic.main.activity_simple.recyclerView
 import kotlinx.android.synthetic.main.parallax_content_row.view.*
 import kotlinx.android.synthetic.main.parallax_header_row.view.*
@@ -24,12 +24,16 @@ class ParallaxActivity : AppCompatActivity() {
         setContentView(R.layout.activity_parallax)
         val adapter = AutoAdapter(hasStableIds = false)
         recyclerView.adapter = adapter
-        recyclerView.setOnScrollChangeListener { _view, i, i2, i3, i4 ->
-            val view = recyclerView.getChildAt(0);
-            if (view != null && recyclerView.getChildAdapterPosition(view) == 0) {
-                view.translationY = (-view.top / 2).toFloat()
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val view = recyclerView.getChildAt(0);
+                if (view != null && recyclerView.getChildAdapterPosition(view) == 0) {
+                    view.translationY = (-view.top / 2).toFloat()
+                }
             }
-        }
+        })
+        val autoIncrementingId = AutoIncrementingId()
         val list = listOf(
             ImageRow(),
             ParallaxHeaderRow(
@@ -77,7 +81,9 @@ class ParallaxActivity : AppCompatActivity() {
                             "Gallagher and Etherington will be back in action on Tuesday in the super-combined, amid hopes they could add to the medal total."
                 )
             ),
-            FooterRow("© 2020 Fake News, Inc.")
+            FooterRow(
+                FooterRow.Data(autoIncrementingId.next(), "© 2020 Fake News, Inc.")
+            )
         )
         adapter.submitList(list)
 
@@ -85,7 +91,7 @@ class ParallaxActivity : AppCompatActivity() {
 }
 
 private class ParallaxHeaderRow(override val data: HeaderAutoData) :
-    BaseRow<ParallaxHeaderRow.HeaderAutoData>() {
+    ListItem<ParallaxHeaderRow.HeaderAutoData>() {
     override val layoutResId = R.layout.parallax_header_row
     override fun bind(itemView: View) {
         itemView.apply {
@@ -103,7 +109,7 @@ private class ParallaxHeaderRow(override val data: HeaderAutoData) :
 }
 
 private class ParallaxContentRow(override val data: StringData) :
-    BaseRow<StringData>() {
+    ListItem<StringData>() {
     override val layoutResId = R.layout.parallax_content_row
     override fun bind(itemView: View) {
         itemView.apply {
