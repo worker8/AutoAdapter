@@ -1,13 +1,13 @@
 package com.worker8.autoadapter.rows
 
 import android.view.View
-import com.worker8.auto.adapter.library.BaseRow
+import com.worker8.auto.adapter.library.ListItem
 import com.worker8.auto.adapter.library.NoAutoData
 import com.worker8.autoadapter.R
 import kotlinx.android.synthetic.main.header_row.view.*
 
 class HeaderRow(private val title: String) :
-    BaseRow<NoAutoData>() {
+    ListItem<NoAutoData>() {
     override val layoutResId = R.layout.header_row
     override val data = NoAutoData()
     override fun bind(itemView: View) {
