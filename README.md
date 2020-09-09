@@ -81,13 +81,16 @@ class NormalRow(override val data: NormalAutoData) : ListItem<NormalAutoData>() 
 ```
 
 **Explanation:**
-i. `NormalAutoData` is a class inherited from `AutoData`, will describe more in the coming section. This holds the data itself, in this case, it is the `title #n` and the `desc #n` strings.
+
+i. `NormalAutoData` is a class inherited from `AutoData` (will be described more in the next section). This holds the data itself, in this case, it is the `title #n` and the `desc #n` strings.
+
 ii. we pass in the xml resource id to be used for this row.
+
 iii. we override the `bind()` method, this method will be called by `RecyclerView` when this row appears in the screen.
 
 ### 2. `AutoData`
 
-`AutoData` is a interface for describing an object that has an `id` where it's content can be comparable: 
+`AutoData` is an interface for describing an object that has an `id` where it's content can be comparable: 
 
 ```
 interface AutoData {
@@ -108,20 +111,23 @@ data class NormalAutoData(override val id: Long, val name: String, val desc: Str
 ```
 
 **Explanation:**
+
 i. the `id` will be used by [RecyclerView.Adapter#getItemId()](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.Adapter#getItemId(int)) to identify an item.
+
 ii. if there is no `stable id`, [`NO_ID`](https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView#NO_ID) can be used
+
 iii. we override the `isContentSame()` method for comparing the content, this will be used by the [`DiffUtil.ItemCallback`](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil.ItemCallback) to calculate the difference.
 - _refer to [this doc](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter) if you are not familiar with `RecyclerView.ListAdapter`._
 
 ### 3. `AutoAdapter`
 After making the `ListItem` and `AutoData`, we can finally make the list!
 
-`AutoAdapter` inherits from [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter). When using `AutoAdapter`, it will automatically calculate the view types and offset, so there is no need to write your own Adapter at all even you have multiple different view types.
+`AutoAdapter` inherits from [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter). When using `AutoAdapter`, it will automatically calculate the view types and position offset, so there is no need to write your own Adapter at all even for use cases with multiple different view types.
 
 To setup `AutoAdapter`, simply make an instance in the activity:
 
 ```kotlin
-onCreate() {
+fun onCreate() {
     val adapter = AutoAdapter()
     recyclerView.adapter = adapter
 }
@@ -130,7 +136,7 @@ onCreate() {
 Since `AutoAdapter` inherits from `RecyclerView.ListAdapter`, we use the same API `adapter.submitList(list)` to populate the list:
 
 ```diff
-onCreate() {
+fun onCreate() {
     val adapter = AutoAdapter()
     recyclerView.adapter = adapter
 +   val list = mutableListOf<ListItem<AutoData>>()
@@ -154,8 +160,8 @@ Let's say we want to build a `Header` like below:
 
 <img src="https://user-images.githubusercontent.com/1988156/92580845-da1e7980-f2c9-11ea-8b61-138f555b4d9f.png" width="300px" />
 
-The changes we need from the above basic example in the previous section above :point_up: is actually quite minimal.
-We need to follow the same steps as above, first we need to create another Row:
+The changes we need to make from the previous basic example above :point_up: is actually quite minimal.
+We need to follow the same steps as above, first we need to create `HeaderRow`:
 
 ```
 class HeaderRow(private val title: String) :
@@ -184,7 +190,7 @@ class NoAutoData(override val id: Long = -1) : AutoData {
 After making the `HeaderRow`, we can simply add it to the `list`:
 
 ```diff
-onCreate() {
+fun onCreate() {
     val adapter = AutoAdapter()
     recyclerView.adapter = adapter
     val list = mutableListOf<ListItem<AutoData>>()
@@ -206,7 +212,7 @@ For a more thorough example, refer to [Multiple View Type Example](https://githu
 When making an instance of `AutoAdapter`, you can pass in a boolean to indicate this flag:
 
 ```
-val adapter = AutoAdapter(hasStableIds = hasStableId)
+val adapter = AutoAdapter(hasStableIds = true) // default is false
 ```
 
 Then, pass in a unique id to the data:
@@ -216,6 +222,8 @@ list.add(NormalRow(
     NormalAutoData(id = uniqueId, "title", "desc")
 ))
 ```
+
+After enablding `hasStablIds = true`, `RecyclerView` can optimize the animation when changes happen and can prevent blinking issue.
 
 ## License
 
