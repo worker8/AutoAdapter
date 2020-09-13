@@ -1,7 +1,9 @@
 package com.worker8.autoadapter
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.worker8.auto.adapter.library.AutoAdapter
 import com.worker8.auto.adapter.library.AutoData
 import com.worker8.auto.adapter.library.ListItem
@@ -10,13 +12,13 @@ import com.worker8.autoadapter.data.ImageData
 import com.worker8.autoadapter.data.NormalAutoData
 import com.worker8.autoadapter.rows.*
 import com.worker8.autoadapter.util.AutoIncrementingId
-import kotlinx.android.synthetic.main.activity_basic_list.*
 
 class MultipleViewTypeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_basic_list)
         val adapter = AutoAdapter(hasStableIds = false)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
 
         var counter = 5
@@ -75,15 +77,15 @@ class MultipleViewTypeActivity : AppCompatActivity() {
             adapter.submitList(it)
         }
 
-        shuffleButton.setOnClickListener {
+        findViewById<View>(R.id.shuffleButton).setOnClickListener {
             state.shuffle()
         }
 
-        removeButton.setOnClickListener {
+        findViewById<View>(R.id.removeButton).setOnClickListener {
             state.removeRow()
         }
 
-        addButton.setOnClickListener {
+        findViewById<View>(R.id.addButton).setOnClickListener {
             counter++
             state.addRow(
                 NormalRow(
