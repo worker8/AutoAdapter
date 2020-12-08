@@ -2,6 +2,7 @@ package com.worker8.autoadapter
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_ID
@@ -12,16 +13,13 @@ import com.worker8.autoadapter.data.StringData
 import com.worker8.autoadapter.rows.FooterRow
 import com.worker8.autoadapter.rows.ImageRow
 import com.worker8.autoadapter.util.AutoIncrementingId
-import kotlinx.android.synthetic.main.activity_simple.recyclerView
-import kotlinx.android.synthetic.main.parallax_content_row.view.*
-import kotlinx.android.synthetic.main.parallax_header_row.view.*
 
 class ParallaxActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parallax)
         val adapter = AutoAdapter(hasStableIds = false)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -94,6 +92,8 @@ private class ParallaxHeaderRow(override val data: HeaderAutoData) :
     override val layoutResId = R.layout.parallax_header_row
     override fun bind(itemView: View) {
         itemView.apply {
+            val parallaxTagText = findViewById<TextView>(R.id.parallaxTagText)
+            val parallaxTitleText = findViewById<TextView>(R.id.parallaxTitleText)
             parallaxTagText.text = data.tag
             parallaxTitleText.text = data.title
         }
@@ -112,6 +112,7 @@ private class ParallaxContentRow(override val data: StringData) :
     override val layoutResId = R.layout.parallax_content_row
     override fun bind(itemView: View) {
         itemView.apply {
+            val parallaxContentText = findViewById<TextView>(R.id.parallaxContentText)
             parallaxContentText.text = data.text
         }
     }
