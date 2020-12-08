@@ -15,7 +15,6 @@ import com.worker8.autoadapter.rows.ImageRow
 import com.worker8.autoadapter.util.AutoIncrementingId
 
 class ParallaxActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parallax)

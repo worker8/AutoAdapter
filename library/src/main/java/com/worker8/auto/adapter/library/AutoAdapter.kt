@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_ID
 import kotlin.reflect.KClass
 
-class AutoAdapter(private val hasStableIds: Boolean = false) :
+open class AutoAdapter(private val hasStableIds: Boolean = false) :
     ListAdapter<ListItem<AutoData>, RecyclerView.ViewHolder>(Comparator) {
     // KClass -> ViewType
     private val viewTypeCache = mutableMapOf<KClass<*>, Int>()
@@ -26,7 +26,6 @@ class AutoAdapter(private val hasStableIds: Boolean = false) :
         } else {
             NO_ID
         }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         LayoutInflater.from(parent.context)

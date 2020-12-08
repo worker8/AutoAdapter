@@ -34,6 +34,9 @@ class TopActivity : AppCompatActivity() {
             SimpleRow(StringData(text = "ParallaxActivity")) {
                 startActivity(Intent(this@TopActivity, ParallaxActivity::class.java))
             },
+            SimpleRow(StringData(text = "ComposeActivity")) {
+                startActivity(Intent(this@TopActivity, ComposeActivity::class.java))
+            },
             SimpleRow(StringData(text = "")) {},
         )
         adapter.submitList(list)
