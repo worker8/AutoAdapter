@@ -30,6 +30,7 @@ dependencies {
     implementation("com.github.worker8:AutoAdapter:-SNAPSHOT")
 }
 ```
+Replace `-SNAPSHOT` with the latest version found here to use the latest version: https://github.com/worker8/AutoAdapter/releases
 
 
 ## Usage by examples
