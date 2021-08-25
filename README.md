@@ -73,7 +73,7 @@ class NormalRow(override val data: NormalAutoData) : ListItem<NormalAutoData>() 
 
     override val layoutResId = R.layout.normal_row // Explanation ii.
 
-    override fun bind(itemView: View) { // Explanation iii.
+    override fun bind(itemView: View, position: Int) { // Explanation iii.
         itemView.titleText.text = data.name
         itemView.descText.text = data.desc
     }
@@ -171,7 +171,7 @@ class HeaderRow(private val title: String) :
 
     override val data = NoAutoData()
 
-    override fun bind(itemView: View) {
+    override fun bind(itemView: View, position: Int) {
         itemView.headerText.text = title
     }
 }

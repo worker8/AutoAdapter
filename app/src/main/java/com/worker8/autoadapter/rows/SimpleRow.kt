@@ -11,7 +11,7 @@ class SimpleRow(
     val onClick: () -> Unit
 ) : ListItem<StringData>() {
     override val layoutResId = R.layout.simple_row
-    override fun bind(itemView: View) {
+    override fun bind(itemView: View, position: Int) {
         itemView.apply {
             val simpleText = findViewById<TextView>(R.id.simpleText)
             simpleText.text = data.text

@@ -8,5 +8,5 @@ abstract class ListItem<out T : AutoData> {
 
     @get:LayoutRes
     abstract val layoutResId: Int
-    abstract fun bind(itemView: View)
+    abstract fun bind(itemView: View, position: Int)
 }
