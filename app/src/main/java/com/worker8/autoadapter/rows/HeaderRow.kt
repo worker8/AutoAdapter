@@ -10,7 +10,7 @@ class HeaderRow(private val title: String) :
     ListItem<NoAutoData>() {
     override val layoutResId = R.layout.header_row
     override val data = NoAutoData()
-    override fun bind(itemView: View) {
+    override fun bind(itemView: View, position: Int) {
         itemView.apply {
             findViewById<TextView>(R.id.headerText).text = title
         }

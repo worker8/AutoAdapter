@@ -9,7 +9,7 @@ import com.worker8.autoadapter.R
 class FooterRow(override val data: Data) :
     ListItem<FooterRow.Data>() {
     override val layoutResId = R.layout.footer_row
-    override fun bind(itemView: View) {
+    override fun bind(itemView: View, position: Int) {
         itemView.findViewById<TextView>(R.id.footerText).text = data.privacyMessage
     }
 

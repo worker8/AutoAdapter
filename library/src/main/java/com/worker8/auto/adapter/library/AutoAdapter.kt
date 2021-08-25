@@ -33,7 +33,7 @@ open class AutoAdapter(private val hasStableIds: Boolean = false) :
             .let { object : RecyclerView.ViewHolder(it) {} }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        getItem(position).bind(holder.itemView)
+        getItem(position).bind(holder.itemView, position)
 
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)

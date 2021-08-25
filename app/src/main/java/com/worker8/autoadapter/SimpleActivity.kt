@@ -42,7 +42,7 @@ class SimpleActivity : AppCompatActivity() {
 private class NormalRow(override val data: NormalAutoData) :
     ListItem<NormalAutoData>() {
     override val layoutResId = R.layout.normal_row
-    override fun bind(itemView: View) {
+    override fun bind(itemView: View, position: Int) {
         itemView.apply {
             val titleText = findViewById<TextView>(R.id.titleText)
             val descText = findViewById<TextView>(R.id.descText)
